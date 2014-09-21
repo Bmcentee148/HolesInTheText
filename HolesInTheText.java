@@ -7,20 +7,25 @@ import java.util.Scanner;
 public class HolesInTheText {
 
 	public static void main(String [] args) {
-		
-		Scanner usrInput = new Scanner(System.in);
-		int numTestCases = usrInput.nextInt();
-		usrInput.nextLine();
 		int totalNumHoles;
 		int numOneHole;
 		int numTwoHole;
-		
-		for(int curr_case = 1; curr_case <= numTestCases ; curr_case++) {
+		Scanner usrInput = new Scanner(System.in);
+		int numTestCases = usrInput.nextInt();
+		usrInput.nextLine();
+		String [] testCases = new String [numTestCases];
+		int [] answers = new int[numTestCases];
+		for(int index = 0; index < numTestCases; index ++) {
+			testCases[index] = usrInput.nextLine();
+		}
+
+
+		for(int curr_case = 0; curr_case < numTestCases ; curr_case++) {
 			//reset counts for each case
 			numOneHole = 0;
 			numTwoHole = 0;
 			totalNumHoles = 0;
-			String testCase = usrInput.nextLine();
+			String testCase = testCases[curr_case];
 			char [] testChars = testCase.toCharArray();
 			for(char c: testChars) {
 				if((c == 'A') || (c == 'D') || (c == 'O') || 
@@ -32,7 +37,16 @@ public class HolesInTheText {
 				}
 			}
 			totalNumHoles = (2 * numTwoHole) + (1 * numOneHole);
-			System.out.println(totalNumHoles);
+			//System.out.println(totalNumHoles);
+			answers[curr_case] = totalNumHoles; 
+		}
+
+		displayResults(answers);
+	}
+
+	private static void displayResults(int [] answers) {
+		for(int i = 0; i < answers.length; i++){
+			System.out.println(answers[i]);
 		}
 	}
 }
